@@ -60,8 +60,6 @@ public class contactReader {
 			    String url = "jdbc:odbc:Driver={Microsoft Access Driver (*.mdb)};DBQ="+fileName;
 			    con = DriverManager.getConnection(url,"","");*/
 
-			
-			
 			String myDB = "jdbc:odbc:Driver={Microsoft Access Driver (*.mdb)};DBQ=" + location;
 			con = DriverManager.getConnection(myDB,"","");
 			st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
