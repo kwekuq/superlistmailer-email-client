@@ -159,6 +159,11 @@ public class gui {
 		desktop.add("South",footer);
 		desktop.setLocationRelativeTo(null);
 		desktop.setVisible(true);
+		
+		ekit.disable();
+		middle.disable();
+		sendMsg.disable();
+		subject.disable();
 	
 		add.addActionListener(new ActionListener() {
 			@Override
@@ -245,6 +250,61 @@ public class gui {
 		}
 		
 	});
+	
+	login.addActionListener(new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			final JFrame tempContact = new JFrame();
+			JPanel addPlatform = new JPanel();
+			addPlatform.setLayout(new GridLayout(5,2));
+			final JTextField names = new JTextField(10);
+			final JTextField emails = new JTextField(10);
+			final JTextField port = new JTextField(10);
+			final JTextField host = new JTextField(10);
+			addPlatform.add(new JLabel("User Name:"));
+			addPlatform.add(names);
+			addPlatform.add(new JLabel("Password:"));
+			addPlatform.add(emails);
+			addPlatform.add(new JLabel("Host"));
+			addPlatform.add(host);
+			addPlatform.add(new JLabel("Port"));
+			addPlatform.add(port);
+			host.setText("smtp.gmail.com");
+			port.setText("587");
+			
+			JButton saveMe = new JButton("Login");
+			JButton cancelMe = new JButton("Cancel");
+			addPlatform.add(saveMe);
+			addPlatform.add(cancelMe);
+			tempContact.add(addPlatform);
+			tempContact.setSize(400, 180);
+			tempContact.setLocationRelativeTo(null);
+			tempContact.setVisible(true);
+			
+			saveMe.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					emailer.setLogin(host.getText(), Integer.valueOf(port.getText()), names.getText(), emails.getText());
+					new messagin().displayMessage("Thank you!");
+					ekit.enable();
+					middle.enable();
+					sendMsg.enable();
+					subject.enable();
+					tempContact.dispose();
+				}
+				
+			});
+			cancelMe.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					tempContact.dispose();
+				}
+				
+			});
+			
+		}
+		
+	}); 
 
 	}
 	

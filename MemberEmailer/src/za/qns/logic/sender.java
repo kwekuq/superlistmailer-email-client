@@ -18,12 +18,16 @@ public class sender {
 	private ArrayList<Contact> list = new ArrayList<Contact>();
 	private HtmlEmail email = new HtmlEmail();
 	private JProgressBar bar;
+	private String host;
+	private int port;
+	private String user;
+	private String password;
 	public void sendEmail(JTextPane S, String sub) throws EmailException {
-		email.setHostName("smtp.gmail.com");
-		email.setSmtpPort(587);
+		email.setHostName(host); //smtp.gmail.com
+		email.setSmtpPort(port); //587
 		email.setSSL(true);
-		email.setAuthentication("technical.mcv@gmail.com", "Thlonolofatso2208");
-		email.setFrom("kwekuq@gmail.com", "Kweku Quansah");
+		email.setAuthentication(user, password);
+		email.setFrom(user, user);
 		email.setSubject(sub);
 		email.setTextMsg("Your email client does not support HTML messages");
 		DecimalFormat form = new DecimalFormat("##");
@@ -36,8 +40,6 @@ public class sender {
 			bar.repaint();
 		}
 		email.send();
-			
-			
 			bar.setValue(100);
 			bar.repaint();
 			new messagin().displayMessage("Emails sent");
@@ -62,5 +64,12 @@ public class sender {
 	public void setProgress(JProgressBar prog) {
 		bar = prog;
 		bar.setValue(0);
+	}
+	
+	public void setLogin(String H, int P, String U, String PS) {
+		host = H;
+		user = U;
+		port = P;
+		password = PS;
 	}
 }
